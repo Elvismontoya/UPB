@@ -47,6 +47,12 @@ VALUES (1,1,3),
 	   (2,2,6);
 	   
 SELECT * FROM Clientes
-SELECT Nombre, ID_Pedido, Fecha, Total_compra FROM  Clientes, Pedidos 
-SELECT Nombre, Cantidad, Total_compra FROM Productos, Pedidos, Detalle_Pedido
 
+SELECT Clientes.Nombre, Pedidos.ID_Pedido, Pedidos.Fecha, Pedidos.Total_compra
+FROM Clientes
+JOIN Pedidos ON Clientes.ID = Pedidos.ID_Cliente;
+
+SELECT Productos.Nombre, Detalle_Pedido.Cantidad, (Productos.Precio * Detalle_Pedido.Cantidad) AS Total_Compra
+FROM Productos
+JOIN Detalle_Pedido ON Productos.ID_Producto = Detalle_Pedido.ID_Productos
+JOIN Pedidos ON Pedidos.ID_Pedido = Detalle_Pedido.ID_Pedidos;
